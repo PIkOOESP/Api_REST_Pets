@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import Pets.demo.entity.Pets;
 import Pets.demo.repository.PetRepository;
 /**
@@ -13,11 +13,22 @@ import Pets.demo.repository.PetRepository;
  * @version 1.0
  * @author Miguel Angel Santiago
  */
+
+
 @RestController
 @RequestMapping("/pets")
 public class PetController {
 
     private PetRepository petRepository;
+
+    
+    @PostMapping
+    public void adopt(int id) {
+        Pets pet = petRepository.findById(id).orElseThrow();
+        pet.setAdopt(true);
+        petRepository.save(pet);
+    }
+    
 
     /**
      * <p>Constructor del controlador de mascotas.</p>
