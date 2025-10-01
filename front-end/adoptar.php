@@ -6,6 +6,7 @@ $data = file_get_contents($url);
 $pets = json_decode($data, true);
 $contador=0;   
 
+var_dump($pets);
 ?>
 
 <html>
