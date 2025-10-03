@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import Pets.demo.entity.Pets;
 import Pets.demo.repository.PetRepository;
 /**
@@ -22,6 +22,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class PetController {
 
     private PetRepository petRepository;
+
+    
+    @PostMapping
+    public void adopt(int id) {
+        Pets pet = petRepository.findById(id).orElseThrow();
+        pet.setAdopt(true);
+        petRepository.save(pet);
+    }
+    
 
     /**
      * <p>El metodo se usa para guardar al pet adoptado</p>
