@@ -3,6 +3,7 @@ package Pets.demo.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,11 +14,27 @@ import Pets.demo.repository.PetRepository;
  * @version 1.0
  * @author Miguel Angel Santiago
  */
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 @RestController
 @RequestMapping("/pets")
 public class PetController {
 
     private PetRepository petRepository;
+
+    /**
+     * <p>El metodo se usa para guardar al pet adoptado</p>
+     * @param id
+     * @return
+     */
+
+    @PostMapping("/adopt/{id}")
+    public Pets adopt(@PathVariable int id) {
+        Pets pet= petRepository.findById(id).get();
+        pet.setAdopt(true);
+        return petRepository.save(pet);
+    }
 
     /**
      * <p>Constructor del controlador de mascotas.</p>
@@ -30,7 +47,7 @@ public class PetController {
     
     /**
      * <p>Este metodo devuelve una lista con todas las mascotas en la base de datos.</p>
-     * @return List<Pets> informacion de todas las mascotas en la base de datos.
+     * @return Lista de @link(Pets) informacion de todas las mascotas en la base de datos.
      */
 
     @GetMapping("/list")
