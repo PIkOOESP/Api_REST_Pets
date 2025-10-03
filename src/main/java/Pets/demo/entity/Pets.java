@@ -13,11 +13,22 @@ public class Pets {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String Name;
-    private String Category;
-    private String Chip;
+    private String name;
+    private String category;
+    private String chip;
     private LocalDate born;
     private boolean adopt;
+
+    public Pets() {
+    }
+
+    public Pets(String name, String category, String chip, LocalDate born) {
+        this.name = name;
+        this.category = category;
+        this.chip = chip;
+        this.born = born;
+        this.adopt = false;
+    }
 
     public int getId() {
         return id;
@@ -26,22 +37,22 @@ public class Pets {
         this.id = id;
     }
     public String getName() {
-        return Name;
+        return name;
     }
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
     public String getCategory() {
-        return Category;
+        return category;
     }
     public void setCategory(String category) {
-        Category = category;
+        this.category = category;
     }
     public String getChip() {
-        return Chip;
+        return chip;
     }
     public void setChip(String chip) {
-        Chip = chip;
+        this.chip = chip;
     }
     public LocalDate getBorn() {
         return born;

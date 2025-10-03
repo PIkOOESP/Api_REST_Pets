@@ -1,5 +1,6 @@
 package Pets.demo.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,6 @@ import Pets.demo.repository.PetRepository;
  * @author Miguel Angel Santiago
  */
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/pets")
@@ -33,6 +33,34 @@ public class PetController {
     public Pets adopt(@PathVariable int id) {
         Pets pet= petRepository.findById(id).get();
         pet.setAdopt(true);
+        return petRepository.save(pet);
+    }
+
+    /**
+     * <p>El metodo se usa para guardar al pet no adoptado</p>
+     * @param id
+     * @return
+     */
+
+    @PostMapping("/desadopt/{id}")
+    public Pets desadopt(@PathVariable int id) {
+        Pets pet= petRepository.findById(id).get();
+        pet.setAdopt(false);
+        return petRepository.save(pet);
+    }
+
+    /**
+     * <p>El metodo se usa para crear una nueva mascota</p>
+     * @param name
+     * @param chip
+     * @param category
+     * @param born
+     * @return
+     */
+    
+    @PostMapping("/nuevo")
+    public Pets maspets(String name, String chip, String category, LocalDate born ){
+        Pets pet = new Pets(name, category, chip, born);
         return petRepository.save(pet);
     }
 
