@@ -19,6 +19,17 @@ public class Pets {
     private LocalDate born;
     private boolean adopt;
 
+    public Pets() {
+    }
+
+    public Pets(String name, String category, String chip, LocalDate born) {
+        this.name = name;
+        this.category = category;
+        this.chip = chip;
+        this.born = born;
+        this.adopt = false;
+    }
+
     public int getId() {
         return id;
     }
@@ -50,10 +61,11 @@ public class Pets {
         this.born = born;
     }
 
-    public boolean getAdopt() {
+    public boolean getAdopt(){
         return adopt;
     }
-    public void setAdopt(boolean adopt) {
+
+    public void setAdopt(boolean adopt){
         this.adopt = adopt;
     }
 }
